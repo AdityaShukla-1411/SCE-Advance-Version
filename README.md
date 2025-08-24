@@ -338,3 +338,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 **SCE Advanced** - Making code evaluation professional, efficient, and comprehensive for educational excellence.
+
+
+## Contributor: Lord Arghya (The Cult Operator)
