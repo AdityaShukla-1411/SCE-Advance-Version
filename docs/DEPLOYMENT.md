@@ -14,6 +14,7 @@
 Create production environment files:
 
 **Backend (.env):**
+
 ```env
 NODE_ENV=production
 PORT=5000
@@ -28,6 +29,7 @@ FRONTEND_URL=https://your-domain.com
 ```
 
 **Frontend (.env.production):**
+
 ```env
 NEXT_PUBLIC_BACKEND_URL=https://your-api-domain.com
 ```
@@ -78,17 +80,17 @@ server {
 server {
     listen 443 ssl;
     server_name your-domain.com;
-    
+
     ssl_certificate /path/to/your/certificate.crt;
     ssl_certificate_key /path/to/your/private.key;
-    
+
     # Frontend
     location / {
         proxy_pass http://localhost:3000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
-    
+
     # Backend API
     location /api/ {
         proxy_pass http://localhost:5000/api/;
@@ -102,6 +104,7 @@ server {
 ### 5. Docker Deployment
 
 **Backend Dockerfile:**
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
@@ -113,6 +116,7 @@ CMD ["npm", "start"]
 ```
 
 **Frontend Dockerfile:**
+
 ```dockerfile
 FROM node:18-alpine AS builder
 WORKDIR /app
@@ -132,8 +136,9 @@ CMD ["npm", "start"]
 ```
 
 **docker-compose.yml:**
+
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   backend:
     build: ./backend
@@ -143,7 +148,7 @@ services:
       - NODE_ENV=production
     volumes:
       - ./backend/.env:/app/.env
-  
+
   frontend:
     build: ./frontend
     ports:
@@ -157,28 +162,32 @@ services:
 ## Monitoring and Logging
 
 ### 1. Backend Logging
+
 ```javascript
 // Add to server.js
-const winston = require('winston');
+const winston = require("winston");
 
 const logger = winston.createLogger({
-  level: 'info',
+  level: "info",
   format: winston.format.json(),
   transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' })
-  ]
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+  ],
 });
 ```
 
 ### 2. Health Checks
+
 Set up monitoring for:
+
 - `/api/health` endpoint
 - Server response times
 - File upload success rates
 - Error rates
 
 ### 3. Performance Monitoring
+
 - Memory usage
 - CPU utilization
 - Disk space
@@ -187,18 +196,21 @@ Set up monitoring for:
 ## Security Considerations
 
 ### 1. File Upload Security
+
 - Validate file types
 - Scan for malicious content
 - Limit file sizes
 - Sanitize filenames
 
 ### 2. API Security
+
 - Implement rate limiting
 - Add authentication
 - Use HTTPS only
 - Validate all inputs
 
 ### 3. Database Security (if added)
+
 - Use parameterized queries
 - Regular backups
 - Encrypted connections
@@ -207,10 +219,12 @@ Set up monitoring for:
 ## Backup Strategy
 
 ### 1. Code Backup
+
 - Git repository with multiple remotes
 - Automated daily backups
 
 ### 2. Data Backup (if applicable)
+
 - Database backups
 - File storage backups
 - Configuration backups
@@ -218,12 +232,14 @@ Set up monitoring for:
 ## Scaling Considerations
 
 ### 1. Horizontal Scaling
+
 - Load balancer setup
 - Multiple backend instances
 - Session management
 - File upload distribution
 
 ### 2. Performance Optimization
+
 - CDN for static assets
 - Caching strategies
 - Database optimization
@@ -232,12 +248,14 @@ Set up monitoring for:
 ## Troubleshooting
 
 ### Common Issues
+
 1. **High Memory Usage**: Increase server resources or optimize code analysis
 2. **Slow File Processing**: Implement queue system for large batches
 3. **Upload Failures**: Check file size limits and disk space
 4. **API Timeouts**: Increase timeout settings for large file processing
 
 ### Logs to Monitor
+
 - Application logs: `/var/log/sce-advanced/`
 - Access logs: Nginx/Apache logs
 - Error logs: PM2 logs

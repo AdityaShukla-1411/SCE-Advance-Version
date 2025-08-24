@@ -1,21 +1,25 @@
 # API Documentation - SCE Advanced
 
 ## Base URL
+
 ```
 http://localhost:5000/api
 ```
 
 ## Authentication
+
 Currently, the API does not require authentication for development. In production, implement proper authentication mechanisms.
 
 ## Endpoints
 
 ### Health Check
+
 **GET** `/health`
 
 Returns the server status and health information.
 
 **Response:**
+
 ```json
 {
   "status": "OK",
@@ -25,15 +29,18 @@ Returns the server status and health information.
 ```
 
 ### Single File Analysis
+
 **POST** `/analyze`
 
 Analyzes a single code file for quality and provides feedback.
 
 **Request:**
+
 - Content-Type: `multipart/form-data`
 - Body: `file` (code file)
 
 **Response:**
+
 ```json
 {
   "id": "1692875400123",
@@ -49,15 +56,18 @@ Analyzes a single code file for quality and provides feedback.
 ```
 
 ### Bulk File Analysis
+
 **POST** `/analyze/bulk`
 
 Analyzes multiple code files with plagiarism detection.
 
 **Request:**
+
 - Content-Type: `multipart/form-data`
 - Body: `files[]` (multiple code files, max 100)
 
 **Response:**
+
 ```json
 {
   "results": [
@@ -89,11 +99,13 @@ Analyzes multiple code files with plagiarism detection.
 ```
 
 ### CSV Export
+
 **POST** `/export/csv`
 
 Exports analysis results to CSV format.
 
 **Request:**
+
 ```json
 {
   "results": [
@@ -103,15 +115,18 @@ Exports analysis results to CSV format.
 ```
 
 **Response:**
+
 - Content-Type: `text/csv`
 - Headers: Student Name, File Name, File ID, Score, Grade, Plagiarism %, Similar Files, etc.
 
 ### Statistics
+
 **GET** `/stats`
 
 Returns system statistics and usage metrics.
 
 **Response:**
+
 ```json
 {
   "totalAnalyses": 1247,
@@ -133,6 +148,7 @@ All endpoints return appropriate HTTP status codes with error messages:
 ```
 
 Common status codes:
+
 - `400` - Bad Request (invalid input)
 - `413` - Payload Too Large (file size limit exceeded)
 - `500` - Internal Server Error
@@ -140,6 +156,7 @@ Common status codes:
 ## Rate Limiting
 
 API requests are limited to prevent system overload. Current limits:
+
 - 100 requests per minute per IP
 - Maximum 10MB per file
 - Maximum 100 files per batch request
@@ -147,6 +164,7 @@ API requests are limited to prevent system overload. Current limits:
 ## File Type Support
 
 Supported file extensions:
+
 - Python: `.py`
 - JavaScript: `.js`
 - TypeScript: `.ts`
