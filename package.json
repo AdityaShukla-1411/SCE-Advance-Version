@@ -1,0 +1,56 @@
+{
+  "name": "sce-advanced",
+  "version": "1.0.0",
+  "description": "Professional Code Evaluator for Universities - Advanced plagiarism detection and bulk processing",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "clean": "rimraf node_modules backend/node_modules frontend/node_modules backend/.next frontend/.next",
+    "setup": "npm run install:all && npm run setup:env",
+    "setup:env": "cp backend/.env.example backend/.env"
+  },
+  "keywords": [
+    "code-evaluator",
+    "plagiarism-detection",
+    "education",
+    "university",
+    "code-analysis",
+    "bulk-processing",
+    "academic",
+    "grading",
+    "assignment-evaluation"
+  ],
+  "author": "SCE Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "rimraf": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/sce-advanced.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/sce-advanced/issues"
+  },
+  "homepage": "https://github.com/your-username/sce-advanced#readme"
+}
